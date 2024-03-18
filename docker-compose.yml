@@ -6,6 +6,8 @@ services:
     ports:
       - "9324:9324"
       - "9325:9325"
+    healthcheck:
+      test: wget -q -S -O - 127.0.0.1:9324/?Action=ListQueues
     volumes:
       - "./docker/elasticmq/elasticmq.conf:/opt/elasticmq.conf"
 
@@ -22,7 +24,8 @@ services:
       AWS_SECRET_ACCESS_KEY: x
       AWS_ENDPOINT_URL_SQS: http://elasticmq:9324
     depends_on:
-      - elasticmq
+      elasticmq:
+        condition: service_healthy
 
   case2:
     build:
@@ -37,7 +40,8 @@ services:
       AWS_SECRET_ACCESS_KEY: x
       AWS_ENDPOINT_URL_SQS: http://elasticmq:9324
     depends_on:
-      - elasticmq
+      elasticmq:
+        condition: service_healthy
 
   case3:
     build:
@@ -52,7 +56,8 @@ services:
       AWS_SECRET_ACCESS_KEY: x
       AWS_ENDPOINT_URL_SQS: http://elasticmq:9324
     depends_on:
-      - elasticmq
+      elasticmq:
+        condition: service_healthy
 
   case4:
     build:
@@ -67,4 +72,5 @@ services:
       AWS_SECRET_ACCESS_KEY: x
       AWS_ENDPOINT_URL_SQS: http://elasticmq:9324
     depends_on:
-      - elasticmq
+      elasticmq:
+        condition: service_healthy
