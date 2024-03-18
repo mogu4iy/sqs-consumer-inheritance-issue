@@ -1,0 +1,21 @@
+{
+  "name": "sqs-consumer-inheritance-issue",
+  "version": "1.0.0",
+  "description": "Minimal reproducible example for sqs-consumer inheritance issue",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:case1": "node cases/case1.js",
+    "start:case2": "node cases/case2.js",
+    "start:case3": "node cases/case3.js",
+    "start:case4": "node cases/case4.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "sqs-consumer": "^9.1.0",
+    "sqs-producer": "^5.0.0"
+  }
+}

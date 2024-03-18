@@ -1,0 +1,70 @@
+version: "3"
+
+services:
+  elasticmq:
+    image: softwaremill/elasticmq
+    ports:
+      - "9324:9324"
+      - "9325:9325"
+    volumes:
+      - "./docker/elasticmq/elasticmq.conf:/opt/elasticmq.conf"
+
+  case1:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      args:
+        CASE: case1
+    tty: true
+    environment:
+      AWS_REGION: us-west-1
+      AWS_ACCESS_KEY_ID: x
+      AWS_SECRET_ACCESS_KEY: x
+      AWS_ENDPOINT_URL_SQS: http://elasticmq:9324
+    depends_on:
+      - elasticmq
+
+  case2:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      args:
+        CASE: case2
+    tty: true
+    environment:
+      AWS_REGION: us-west-1
+      AWS_ACCESS_KEY_ID: x
+      AWS_SECRET_ACCESS_KEY: x
+      AWS_ENDPOINT_URL_SQS: http://elasticmq:9324
+    depends_on:
+      - elasticmq
+
+  case3:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      args:
+        CASE: case3
+    tty: true
+    environment:
+      AWS_REGION: us-west-1
+      AWS_ACCESS_KEY_ID: x
+      AWS_SECRET_ACCESS_KEY: x
+      AWS_ENDPOINT_URL_SQS: http://elasticmq:9324
+    depends_on:
+      - elasticmq
+
+  case4:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      args:
+        CASE: case4
+    tty: true
+    environment:
+      AWS_REGION: us-west-1
+      AWS_ACCESS_KEY_ID: x
+      AWS_SECRET_ACCESS_KEY: x
+      AWS_ENDPOINT_URL_SQS: http://elasticmq:9324
+    depends_on:
+      - elasticmq
